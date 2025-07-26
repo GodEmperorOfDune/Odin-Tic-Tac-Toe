@@ -23,7 +23,7 @@ _____|_____|_____
     valid_coordinate = false
     until valid_coordinate do
       coordinates = self.get_player_input
-      if @board[coordinates.to_sym] = ' '
+      if @board[coordinates.to_sym] == ' '
         @board[coordinates.to_sym] = icon
         valid_coordinate = true
       else
