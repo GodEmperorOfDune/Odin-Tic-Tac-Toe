@@ -1,9 +1,5 @@
 class GameBoard
-  @@empty_board = {
-    :a1 => ' ', :a2 => ' ', :a3 => ' ',
-    :b1 => ' ', :b2 => ' ', :b3 => ' ',
-    :c1 => ' ', :c2 => ' ', :c3 => ' '
-  }
+
 
   def initialize
     @board = @@empty_board
@@ -24,4 +20,15 @@ _____|_____|_____
   def make_move(icon, coordinates)
     @board[coordinates.to_sym] = icon
   end
+
+  private
+  @@empty_board = {
+    :a1 => ' ', :a2 => ' ', :a3 => ' ',
+    :b1 => ' ', :b2 => ' ', :b3 => ' ',
+    :c1 => ' ', :c2 => ' ', :c3 => ' '
+  }
 end
+
+board = GameBoard.new
+
+board.print_board
