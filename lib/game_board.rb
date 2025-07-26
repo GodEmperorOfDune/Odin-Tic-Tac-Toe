@@ -1,6 +1,4 @@
 class GameBoard
-
-
   def initialize
     @board = @@EMPTY_BOARD
   end
@@ -57,13 +55,3 @@ _____|_____|_____
   }
 
 end
-
-board = GameBoard.new
-
-board.make_move("X", "a1")
-board.make_move("X", "a2")
-board.make_move("X", "a3")
-
-board.print_board
-
-board.check_win("O")

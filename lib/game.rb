@@ -1,8 +1,8 @@
 require_relative 'game_board'
-
-HELPER_TEXT = 
+require_relative 'player_input'
 
 class Game
+  include PlayerInput
   def initialize(player_one, player_two)
     @board = GameBoard.new
     @player_one = player_one
@@ -27,18 +27,48 @@ class Game
     puts "for example if you want to play in the middle square you would enter b2"
   end
 
-  def check_tie(current_board)
-    if current_board.values.none?(' ')
-      puts "The game is a tie"
-      true
+  def player_one_turn
+    puts "Please enter your coordinate #{player_one}"
+    coordinate = self.get_player_input
+    board.make_move("X", coordinate)
+    board.print_board
+    if board.check_win("X")
+      puts "#{player_one} has Won"
+      puts "Would you like to play another round"
+      new_game_answer = self.get_new_game
+      return new_game_answer
     end
-    false
+    if board.check_tie
+      puts "Would you like to play another round"
+      new_game_answer = self.get_new_game
+      return new_game_answer
+    end
+    player_two_turn
   end
 
+  def player_two_turn
+    puts "Please enter your coordinate #{player_two}"
+    coordinate = self.get_player_input
+    board.make_move("O", coordinate)
+    board.print_board
+    if board.check_win("O")
+      puts "#{player_two} has Won"
+      puts "Would you like to play another round"
+      new_game_answer = self.get_new_game
+      return new_game_answer
+    end
+    if board.check_tie
+      puts "Would you like to play another round"
+      new_game_answer = self.get_new_game
+      return new_game_answer
+    end
+    player_one_turn
+  end
   private
-  attr_accessor :player_one, :player_two
+  attr_accessor :player_one, :player_two, :board
+  
 end
 
 game = Game.new("Test 1", "Test 2")
 
-game.help
+game.player_one_turn
