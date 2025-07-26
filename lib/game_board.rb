@@ -1,4 +1,8 @@
+require_relative 'player_input'
+
 class GameBoard
+  include PlayerInput
+
   def initialize
     @board = @@EMPTY_BOARD
   end
@@ -15,8 +19,17 @@ _____|_____|_____
      |     |     "
   end
 
-  def make_move(icon, coordinates)
-    @board[coordinates.to_sym] = icon
+  def make_move(icon)
+    valid_coordinate = false
+    until valid_coordinate do
+      coordinates = self.get_player_input
+      if @board[coordinates.to_sym] = ' '
+        @board[coordinates.to_sym] = icon
+        valid_coordinate = true
+      else
+        puts "Please enter an empty space"
+      end
+    end
   end
 
   def check_tie()

@@ -29,8 +29,7 @@ class Game
 
   def player_one_turn
     puts "Please enter your coordinate #{player_one}"
-    coordinate = self.get_player_input
-    board.make_move("X", coordinate)
+    board.make_move("X")
     board.print_board
     if board.check_win("X")
       puts "#{player_one} has Won"
@@ -48,8 +47,7 @@ class Game
 
   def player_two_turn
     puts "Please enter your coordinate #{player_two}"
-    coordinate = self.get_player_input
-    board.make_move("O", coordinate)
+    board.make_move("O")
     board.print_board
     if board.check_win("O")
       puts "#{player_two} has Won"
